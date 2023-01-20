@@ -54,6 +54,9 @@ Cw_Tx.direction = digitalio.Direction.OUTPUT #
 M_Ton = digitalio.DigitalInOut(board.GP16) # Mithoertonausgang
 M_Ton.direction = digitalio.Direction.OUTPUT
 
+LED =digitalio.DigitalInOut(board.GP5)  #Transceiver  
+LED.direction = digitalio.Direction.OUTPUT #
+
 speed_in = AnalogIn(board.A0)
  
 n_cw = 0  #eventuell aendern
@@ -267,7 +270,7 @@ def Punkt():
     global Z_z,Cod,PKT_m,Zp_a,SPACE,M_Ton_m
     OnBoardLed.value = True
     if (ETM.value == False):
-        Cw_Tx.value =True
+        Cw_Tx.value = LED.value =True
     if (Vband.value == False):
         kbd.press(Keycode.LEFT_CONTROL)     
     M_Ton_m = 1
@@ -277,7 +280,7 @@ def Punkt():
     Pause()
     #OnBoardLed.value(n_cw)
     OnBoardLed.value = False
-    Cw_Tx.value = False
+    Cw_Tx.value = LED.value = False
     if (Vband.value == False):
         kbd.release_all()
     M_Ton_m = 0
@@ -290,7 +293,7 @@ def Strich():
     global Z_z,Cod,PKT_m,Zp_a,SPACE,M_Ton_m
     OnBoardLed.value = True
     if (ETM.value == False):
-        Cw_Tx.value = True
+        Cw_Tx.value = LED.value = True
     if (Vband.value == False):
         kbd.press(Keycode.LEFT_CONTROL)
     M_Ton_m = 1
@@ -305,7 +308,7 @@ def Strich():
     print('Strich ')
     Z_z +=1
     OnBoardLed.value = False
-    Cw_Tx.value = False
+    Cw_Tx.value = LED.value = False
     if (Vband.value == False):
         kbd.release_all()
     M_Ton_m = 0
